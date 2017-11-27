@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Test</string>
-    <string name="action_settings">Settings</string>
-    <string name="seconds">Seconds</string>
+    <string name="app_name">WorkWork</string>
+    <string name="seconds">seconds elapsed</string>
 </resources>
