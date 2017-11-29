@@ -22,16 +22,12 @@ public class LiveDataTimerViewModel extends ViewModel {
 
     private MutableLiveData<Long> elapsedTime = new MutableLiveData<>();
 
-    private long initialTime;
-    private long actualTime=0;
-    private boolean counting=true;
-    private long addedtime=0;
-    private long newtime=0;
+    private long actualTime = 0;
+    private boolean counting = true;
+    private long addedTime = 0;
+    private long newTime = 0;
 
     public LiveDataTimerViewModel() {
-
-
-
 
         actualTime = SystemClock.elapsedRealtime();
         Timer timer = new Timer();
@@ -40,19 +36,14 @@ public class LiveDataTimerViewModel extends ViewModel {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-
-                if(counting==false){
-                    actualTime=SystemClock.elapsedRealtime();
-
-
-                }
-                else{
-
-                    final long newValue= addedtime+ ((SystemClock.elapsedRealtime() - actualTime) / 1000);
+                if (counting == false) {
+                    actualTime = SystemClock.elapsedRealtime();
+                } else {
+                    final long newValue = addedTime + ((SystemClock.elapsedRealtime() - actualTime) / 1000);
                     // setValue() cannot be called from a background thread so post to main thread.
-                    addedtime=newValue;
-                    actualTime=SystemClock.elapsedRealtime();
-                    newtime=newValue;
+                    addedTime = newValue;
+                    actualTime = SystemClock.elapsedRealtime();
+                    newTime = newValue;
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
@@ -60,10 +51,7 @@ public class LiveDataTimerViewModel extends ViewModel {
 
                         }
                     });
-
                 }
-
-
             }
         }, ONE_SECOND, ONE_SECOND);
     }
@@ -72,18 +60,15 @@ public class LiveDataTimerViewModel extends ViewModel {
         return elapsedTime;
     }
 
-
     public void setValue(int value) {
-        addedtime=addedtime+value;
+        addedTime = value;
     }
 
-
-
     public long getValue() {
-        return newtime;
+        return newTime;
     }
 
     public void countElapsedTime(boolean b) {
-        counting=b;
+        counting = b;
     }
 }

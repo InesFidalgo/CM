@@ -15,7 +15,6 @@ public interface CounterDao {
     @Query("SELECT * FROM counter LIMIT 1")
     Counter getCounter();
 
-
     @Insert
     void insert(Counter counter);
 
